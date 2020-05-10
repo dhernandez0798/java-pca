@@ -1,7 +1,5 @@
 package com.github.dhernandez0798.pca;
 
-import smile.netlib.NLMatrix;
-
 public class Main {
 
     public static void main(String[] args) {
@@ -11,7 +9,13 @@ public class Main {
                 {0.24, 0.83, 0.5}
         };
 
+        // Usually, biasCorrected should be true.
         PCA pca = new PCA(test, 2, true);
-        System.out.println(new NLMatrix(pca.getPrincipalComponents()));
+
+        // The computed matrix, aka the principal components matrix
+        double[][] pcaResult = pca.getPrincipalComponents();
+
+        // Prints a beautiful matrix.
+        System.out.println(pca.toString());
     }
 }

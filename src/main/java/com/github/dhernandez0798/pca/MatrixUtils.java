@@ -7,6 +7,13 @@ public class MatrixUtils {
         throw new UnsupportedOperationException();
     }
 
+    /**
+     * Scales a matrix.
+     *
+     * @param matrix    the matrix that is desired to be scaled
+     * @param transpose if the matrix should be transposed. Usually it's true
+     * @return the scaled matrix
+     */
     public static double[][] normalize(double[][] matrix, boolean transpose) {
         if (transpose) {
             matrix = transpose(matrix);
@@ -28,6 +35,13 @@ public class MatrixUtils {
         return transpose ? transpose(normalizedMatrix) : normalizedMatrix;
     }
 
+    /**
+     * Computes the covariance matrix over a given matrix.
+     *
+     * @param matrix
+     * @param biasCorrected true if sample, false if population. Usually, it's true. (x / (n -1))
+     * @return the covariance matrix of the matrix
+     */
     public static double[][] computeCovariance(double[][] matrix, boolean biasCorrected) {
         int dimension = matrix.length;
         double[][] covarianceMatrix = new double[dimension][dimension];
@@ -41,10 +55,17 @@ public class MatrixUtils {
         return covarianceMatrix;
     }
 
+    /**
+     * Truncate the matrix on a specified number of columns.
+     *
+     * @param matrix
+     * @param columns the final number of columns
+     * @return the submatrix
+     */
     public static double[][] submatrix(double[][] matrix, int columns) {
         double[][] transposedMatrix = transpose(matrix);
         if (columns > transposedMatrix.length) {
-            // Todo throw error
+            throw new IllegalArgumentException("cannot create a submatrix bigger than the original");
         }
 
         double[][] newMatrix = new double[columns][transposedMatrix[0].length];
@@ -54,6 +75,12 @@ public class MatrixUtils {
         return transpose(newMatrix);
     }
 
+    /**
+     * Transposes a matrix
+     *
+     * @param matrix
+     * @return the transpose of a matrix
+     */
     public static double[][] transpose(double[][] matrix) {
         double[][] newArray = new double[matrix[0].length][matrix.length];
 
@@ -66,6 +93,13 @@ public class MatrixUtils {
         return newArray;
     }
 
+    /**
+     * Multiplies two matrices
+     *
+     * @param matrix1
+     * @param matrix2
+     * @return the result of the multiplication
+     */
     public static double[][] multiply(double[][] matrix1, double[][] matrix2) {
         double[][] result = new double[matrix1.length][matrix2[0].length];
 

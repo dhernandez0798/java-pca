@@ -51,16 +51,15 @@ public class MathUtils {
         // check length == yArray.length or throw not square matrix exception
         if (length < 2) {
             // check if length is < 2, throw insufficient dimensions exceptions too
-        }
-        else {
+        } else {
             double xMean = calculateMean(xArray);
             double yMean = calculateMean(yArray);
             for (int i = 0; i < length; i++) {
                 double xDev = xArray[i] - xMean;
                 double yDev = yArray[i] - yMean;
                 result += (xDev * yDev - result) / (i + 1);
-                }
             }
-        return biasCorrected ? result * ((double) length / (double)(length - 1)) : result;
+        }
+        return biasCorrected ? result * ((double) length / (double) (length - 1)) : result;
     }
 }
