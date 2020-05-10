@@ -59,8 +59,8 @@ public class MathUtils {
                 double xDev = xArray[i] - xMean;
                 double yDev = yArray[i] - yMean;
                 result += (xDev * yDev - result) / (i + 1);
+                }
             }
-        }
-        return biasCorrected ? result * ((double) length / (double) (length -1)) : result;
+        return biasCorrected ? result * ((double) length / (double)(length - 1)) : result;
     }
 }
